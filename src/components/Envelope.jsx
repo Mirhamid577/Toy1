@@ -195,9 +195,9 @@ export default function Envelope({ onOpen, onExited, opening }) {
                   }}
                   className="gate-fade mb-2 flex gap-2 flex-row justify-center items-center leading-tight font-nautigal text-3xl sm:text-4xl"
                 >
-                  <span className="block text-center">Muhammad</span>
+                  <span className="block text-center">Odilxon</span>
                   <span className="block text-center text-lg leading-none sm:text-xl">&amp;</span>
-                  <span className="block text-center">Xadicha</span>
+                  <span className="block text-center">Odinaxon</span>
                 </h1>
 
                 <div className="flex items-center justify-center gap-3 mb-2">
@@ -222,7 +222,7 @@ export default function Envelope({ onOpen, onExited, opening }) {
                   }}
                   className="gate-fade text-[18px] mb-5 flex flex-col items-center"
                 >
-                  <span dir="auto">16-Dekabr 2026</span>
+                  <span dir="auto">5-No'yabr 2026</span>
                 </div>
 
                 <div className="gate-fade flex justify-center" style={{ animationDelay: "0.6s" }}>

@@ -22,7 +22,7 @@ export default function InviteIntro() {
         className="font-qellia text-xl relative flex flex-col items-center text-center gap-3 md:gap-4"
         style={{ fontFamily: '"Fz Qellia", "Cormorant Garamond", "Times New Roman", serif' }}
       >
-        <span dir="auto">Kuyov &amp; Kelin</span>
+        <span dir="auto">Kuyov  &amp; Kelin</span>
       </Reveal>
 
       <Reveal
@@ -33,7 +33,7 @@ export default function InviteIntro() {
           className="w-[80%] min-h-[80px] flex items-center justify-center leading-[55px] md:leading-[80px] whitespace-nowrap"
           style={{ fontSize: "40px" }}
         >
-          <span dir="auto">Muhammad</span>
+          <span dir="auto">Odilxon</span>
         </h3>
         <div className="text-xs uppercase tracking-[0.2em]" style={{ color: "rgb(225, 188, 124)" }}>
           <span dir="auto">To'y kuni</span>
@@ -45,7 +45,7 @@ export default function InviteIntro() {
           className="w-[80%] min-h-[80px] flex items-center justify-center leading-[55px] md:leading-[80px] whitespace-nowrap"
           style={{ fontSize: "40px" }}
         >
-          <span dir="auto">Xadicha</span>
+          <span dir="auto">Odinaxon</span>
         </h3>
       </Reveal>
 
@@ -59,9 +59,8 @@ export default function InviteIntro() {
       <Reveal
         className="relative flex flex-col items-center gap-2 text-center mt-2"
         style={{ fontFamily: '"Times New Roman", serif', color: "rgb(225, 188, 124)" }}
-      >
-        <span className="text-xs uppercase tracking-[0.2em] opacity-80 mb-1">To'y Sanasi</span>
-        <div className="text-lg md:text-xl font-medium tracking-wider">16-dekabr 2026 18:00</div>
+      ><span className="text-xs uppercase tracking-[0.2em] opacity-80 mb-1">To'y Sanasi</span>
+        <div className="text-lg md:text-xl font-medium tracking-wider">5-No'yabr 2026 17:00</div>
       </Reveal>
 
       <Reveal
@@ -69,7 +68,7 @@ export default function InviteIntro() {
         style={{ fontFamily: '"Times New Roman", serif', color: "rgb(225, 188, 124)" }}
       >
         <span className="text-[16px] text-center uppercase whitespace-pre-line leading-relaxed font-medium">
-          <span dir="auto">Abdurahmonovlar oilasi</span>
+          <span dir="auto">Kamolovlar oilasi</span>
         </span>
       </Reveal>
     </div>

@@ -1,6 +1,24 @@
+import { useState } from "react";
 import Reveal from "./Reveal";
 
+const CARD_NUMBER = "5614681814533729";
+
 export default function GiftSection() {
+  const [revealed, setRevealed] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const formatted = CARD_NUMBER.replace(/(\d{4})(?=\d)/g, "$1 ");
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(CARD_NUMBER);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  };
+
   return (
     <section className="flex flex-col items-center justify-center py-8 relative z-10 px-6 md:px-10 pb-10 md:pb-14">
       <Reveal
@@ -14,6 +32,7 @@ export default function GiftSection() {
       <Reveal className="relative flex flex-col items-center">
         <button
           type="button"
+          onClick={() => setRevealed((v) => !v)}
           aria-label="Open gift box"
           className="group relative cursor-pointer outline-none border-none bg-transparent flex flex-col items-center justify-center transition-transform hover:scale-[1.03]"
           style={{ width: "260px", height: "280px" }}
@@ -113,11 +132,41 @@ export default function GiftSection() {
               className="mx-auto text-sm md:text-base tracking-wider flex items-center justify-center rounded-full px-6 py-2 font-semibold transition-transform group-hover:scale-[1.03] shadow-md"
               style={{ backgroundColor: "rgb(225, 188, 124)", color: "rgb(62, 0, 1)" }}
             >
-              <span dir="auto">Ochish uchun bosing</span>
+              <span dir="auto">{revealed ? "Yopish uchun bosing" : "Ochish uchun bosing"}</span>
             </span>
           </div>
         </button>
       </Reveal>
+
+      {revealed && (
+        <Reveal className="relative z-10 mt-6 w-full max-w-[340px]">
+          <div
+            className="flex flex-col items-center gap-3 rounded-2xl border px-6 py-5 text-center backdrop-blur-xl"
+            style={{
+              background: "rgba(255,255,255,0.06)",
+              borderColor: "rgba(225,188,124,0.3)",
+              color: "rgb(225,188,124)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+            }}
+          >
+            <span className="text-xs uppercase tracking-[0.15em] opacity-80 font-qellia">
+              <span dir="auto">Karta raqami</span>
+            </span>
+            <span className="text-xl md:text-2xl font-semibold tracking-wider tabular-nums font-times">
+              {formatted}
+            </span>
+            <button
+              type="button"
+              onClick={copy}
+              className="mt-1 rounded-full px-6 py-2 text-sm font-semibold transition-transform hover:scale-105"
+              style={{ backgroundColor: "rgb(225, 188, 124)", color: "rgb(62, 0, 1)" }}
+            >
+              <span dir="auto">{copied ? "Nusxalandi ✓" : "Nusxalash"}</span>
+            </button>
+          </div>
+        </Reveal>
+      )}
     </section>
   );
 }

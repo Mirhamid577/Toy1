@@ -8,7 +8,6 @@ import DateSection from "./components/DateSection";
 import MapSection from "./components/MapSection";
 import ProgramSection from "./components/ProgramSection";
 import WishesSection from "./components/WishesSection";
-import RsvpSection from "./components/RsvpSection";
 import GiftSection from "./components/GiftSection";
 import Footer from "./components/Footer";
 import MusicButton from "./components/MusicButton";
@@ -91,7 +90,7 @@ export default function App() {
                       lineHeight: 1.45,
                     }}
                   >
-                    Muhammad
+                    Odilxon
                   </RevealLabel>
                   <RevealLabel style={{ fontSize: "clamp(29px, 6vw, 53px)", lineHeight: 1.3 }}>&</RevealLabel>
                   <RevealLabel
@@ -102,7 +101,7 @@ export default function App() {
                       lineHeight: 1.45,
                     }}
                   >
-                    Xadicha
+                    Odinaxon
                   </RevealLabel>
                 </div>
               </header>
@@ -119,7 +118,6 @@ export default function App() {
                 <MapSection />
                 <ProgramSection />
                 <WishesSection />
-                <RsvpSection />
                 <GiftSection />
                 <div className="relative flex flex-col items-center pt-6 z-10">
                   <Footer />

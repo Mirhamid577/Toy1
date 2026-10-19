@@ -1,32 +1,18 @@
 import { useState } from "react";
 import Reveal from "./Reveal";
 
-const PHOTOS = [
-  "/images/royal-red/3b3eb773-756d-4070-8a30-c65d3c84818e.webp",
-  "/images/royal-red/5a2f5d48-86d3-4798-9a23-af03df4f9aea.webp",
-  "/images/royal-red/f4b3eb51-8afa-40b0-9262-b724cc0455e2.webp",
-  "/images/royal-red/d042a716-97e3-4011-9234-0ed815106b42.webp",
-  "/images/royal-red/8c07b81d-0c26-40d7-a798-6336dacd18ea.webp",
-];
+const modules = import.meta.glob("../assets/gallery/*.{webp,jpg,jpeg,png,avif}", {
+  eager: true,
+  import: "default",
+});
 
-const ALL_PHOTOS = [
-  "/images/royal-red/3b3eb773-756d-4070-8a30-c65d3c84818e.webp",
-  "/images/royal-red/5a2f5d48-86d3-4798-9a23-af03df4f9aea.webp",
-  "/images/royal-red/f4b3eb51-8afa-40b0-9262-b724cc0455e2.webp",
-  "/images/royal-red/d042a716-97e3-4011-9234-0ed815106b42.webp",
-  "/images/royal-red/8c07b81d-0c26-40d7-a798-6336dacd18ea.webp",
-  "/images/royal-red/3ce824f1-854f-4eb3-a23f-790165550d21.webp",
-  "/images/royal-red/7706fead-e32a-4693-8bc0-f06be5af79f7.webp",
-  "/images/royal-red/2a2d2a6c-7081-40b2-8262-93854c9644cb.webp",
-  "/images/royal-red/1ab72965-b806-4b4f-abe0-496994191c35.webp",
-  "/images/royal-red/9b4e0ed6-43ef-4c42-8212-906ff7c34296.webp",
-  "/images/royal-red/5f3b2481-500d-4df6-b65c-98848046d46e.webp",
-  "/images/royal-red/df962fb5-14cf-4a05-98a3-b22914b0303a.webp",
-  "/images/royal-red/baf913fe-e3d4-41e6-bce7-27fff01d10bb.webp",
-  "/images/royal-red/e60ee476-fdbf-4bc4-b98d-5e8d65fb2943.webp",
-  "/images/royal-red/9104e4e5-2e58-4fa3-9d63-f8dd99624d8a.webp",
-  "/images/royal-red/a8a92d29-7e44-4b68-80a8-0744f176de84.webp",
-];
+const ALL_PHOTOS = Object.entries(modules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, src]) => src);
+
+const PHOTOS = ALL_PHOTOS.slice(0, 5);
+const EXTRA = Math.max(0, ALL_PHOTOS.length - 5);
+const photo = (i) => PHOTOS[i] ?? ALL_PHOTOS[0] ?? "";
 
 function Lightbox({ index, setIndex, onClose }) {
   if (index === null) return null;
@@ -88,6 +74,8 @@ function Lightbox({ index, setIndex, onClose }) {
 export default function Gallery() {
   const [lightbox, setLightbox] = useState(null);
 
+  if (ALL_PHOTOS.length === 0) return null;
+
   return (
     <div className="relative flex flex-col items-center z-10 pt-[36px] md:pt-[56px] pb-[48px] md:pb-[72px] mb-4 md:mb-8">
       <div className="w-full max-w-[432px] md:max-w-[600px] mb-6">
@@ -103,21 +91,21 @@ export default function Gallery() {
             style={{ gridColumn: "1 / auto", gridRow: "1 / 3", minHeight: 0, borderColor: "#E1BC7C33" }}
             onClick={() => setLightbox(0)}
           >
-            <img alt="Story photo 1" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" src={PHOTOS[0]} />
+            <img alt="Story photo 1" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" src={photo(0)} />
           </Reveal>
           <Reveal
             className="group relative cursor-pointer overflow-hidden rounded-xl border bg-[#E1BC7C08]"
             style={{ gridColumn: "2 / auto", gridRow: "1 / auto", minHeight: 0, borderColor: "#E1BC7C33" }}
             onClick={() => setLightbox(1)}
           >
-            <img alt="Story photo 2" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" src={PHOTOS[1]} />
+            <img alt="Story photo 2" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" src={photo(1)} />
           </Reveal>
           <Reveal
             className="group relative cursor-pointer overflow-hidden rounded-xl border bg-[#E1BC7C08]"
             style={{ gridColumn: "2 / auto", gridRow: "2 / auto", minHeight: 0, borderColor: "#E1BC7C33" }}
             onClick={() => setLightbox(2)}
           >
-            <img alt="Story photo 3" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" src={PHOTOS[2]} />
+            <img alt="Story photo 3" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" src={photo(2)} />
           </Reveal>
           <div style={{ gridColumn: "1 / 3", gridRow: "3 / auto", display: "grid", gridTemplateColumns: "2fr 3fr", gap: 8, minHeight: 0 }}>
             <Reveal
@@ -125,19 +113,21 @@ export default function Gallery() {
               style={{ minHeight: 0, borderColor: "#E1BC7C33" }}
               onClick={() => setLightbox(3)}
             >
-              <img alt="Story photo 4" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" src={PHOTOS[3]} />
+              <img alt="Story photo 4" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" src={photo(3)} />
             </Reveal>
             <Reveal
               className="group relative cursor-pointer overflow-hidden rounded-xl border bg-[#E1BC7C08]"
               style={{ minHeight: 0, borderColor: "#E1BC7C33" }}
               onClick={() => setLightbox(4)}
             >
-              <img alt="Story photo 5" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" src={PHOTOS[4]} />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-[1px]">
-                <span className="text-lg font-bold" style={{ color: "rgb(225, 188, 124)" }}>
-                  +2
-                </span>
-              </div>
+              <img alt="Story photo 5" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" src={photo(4)} />
+              {EXTRA > 0 && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-[1px]">
+                  <span className="text-lg font-bold" style={{ color: "rgb(225, 188, 124)" }}>
+                    +{EXTRA}
+                  </span>
+                </div>
+              )}
             </Reveal>
           </div>
         </div>

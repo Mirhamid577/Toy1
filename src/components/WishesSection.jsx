@@ -1,14 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Reveal from "./Reveal";
-
-const INITIAL_WISHES = [
-  { name: "Azizbek", date: "10/15/2026", text: "Baxtingiz abadiy, oilangiz doimo mehr va quvonchga to'la bo'lsin!" },
-  { name: "Madina", date: "10/16/2026", text: "Nikoh to'yingiz muborak! Bir umr ahil va baxtli yashanglar." },
-  { name: "Shahzoda", date: "10/17/2026", text: "Yangi hayotingiz sevgi, hurmat va unutilmas lahzalarga boy bo'lsin!" },
-  { name: "Javohir", date: "10/18/2026", text: "Sizlarga uzoq umr, mustahkam oila va cheksiz baxt tilayman!" },
-  { name: "Dilnoza", date: "10/18/2026", text: "Muhabbatingiz yillar o'tgan sayin yanada mustahkam bo'lsin!" },
-  { name: "Sardor", date: "10/18/2026", text: "To'yingiz muborak! Xonadoningizdan fayz, baraka va quvonch arimasin." },
-];
+import { subscribeWishes, publishWishes } from "../lib/wishesStore";
 
 const IDEAS = [
   "Baxtingiz abadiy bo'lsin!",
@@ -17,21 +9,43 @@ const IDEAS = [
   "Hayotingiz har kuni yangi baxtli lahzalarga boy bo'lsin!",
 ];
 
+const formatDate = (value) => {
+  const d = value ? new Date(value) : new Date();
+  return Number.isNaN(d.getTime()) ? new Date().toLocaleDateString("en-US") : d.toLocaleDateString("en-US");
+};
+
 export default function WishesSection() {
-  const [wishes, setWishes] = useState(INITIAL_WISHES);
+  const [wishes, setWishes] = useState([]);
   const [name, setName] = useState("");
   const [text, setText] = useState("");
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
-  const submit = (e) => {
+  useEffect(() => subscribeWishes(setWishes), []);
+
+  const submit = async (e) => {
     e.preventDefault();
-    if (!name.trim() || !text.trim()) return;
-    setWishes([
-      { name: name.trim(), date: new Date().toLocaleDateString("en-US"), text: text.trim() },
-      ...wishes,
-    ]);
+    const cleanName = name.trim();
+    const cleanText = text.trim();
+    if (!cleanName || !cleanText || sending) return;
+
+    setError(false);
+    const wish = { name: cleanName, text: cleanText, created_at: new Date().toISOString() };
+    const next = [wish, ...wishes];
+
+    setSending(true);
+    setWishes(next);
     setName("");
     setText("");
+    try {
+      await publishWishes(next);
+    } catch {
+      setError(true);
+    }
+    setSending(false);
   };
+
+  const all = wishes;
 
   return (
     <section className="relative z-10 px-6 md:px-10 pt-10 md:pt-12 pb-8 md:pb-10" style={{ backgroundColor: "transparent", color: "rgb(225, 188, 124)" }}>
@@ -70,21 +84,26 @@ export default function WishesSection() {
           >
             🪄
           </button>
-          <button type="submit" className="rounded-full px-6 py-2.5 font-semibold transition-transform hover:scale-105" style={{ background: "rgb(225,188,124)", color: "#2b2b2b" }}>
-            Tilak yuborish
+          <button type="submit" disabled={sending} className="rounded-full px-6 py-2.5 font-semibold transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-60" style={{ background: "rgb(225,188,124)", color: "#2b2b2b" }}>
+            {sending ? "Yuborilmoqda..." : "Tilak yuborish"}
           </button>
         </div>
+        {error && (
+          <p className="mt-3 text-center text-xs" style={{ color: "#ff9b9b" }}>
+            <span dir="auto">Xatolik yuz berdi. Birozdan so'ng qayta urinib ko'ring.</span>
+          </p>
+        )}
       </form>
       <Reveal className="mt-8 mx-auto max-h-[500px] w-full max-w-full space-y-3 overflow-y-auto pr-2 md:max-w-lg">
-        {wishes.map((w, i) => (
+        {all.map((w, i) => (
           <div
-            key={`${w.name}-${i}`}
+            key={w.created_at ?? `${w.name}-${i}`}
             className="rounded-xl border p-4 shadow-xl backdrop-blur-xl transition-all hover:scale-[1.01]"
             style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(225,188,124,0.25)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
           >
             <div className="flex items-start justify-between">
               <span className="text-base font-semibold" style={{ color: "rgb(225,188,124)" }}>{w.name}</span>
-              <span className="text-xs" style={{ color: "rgba(225,188,124,0.65)" }}>{w.date}</span>
+              <span className="text-xs" style={{ color: "rgba(225,188,124,0.65)" }}>{formatDate(w.created_at || w.date)}</span>
             </div>
             <p className="mt-2 text-sm leading-relaxed" style={{ color: "rgb(225,188,124)" }}>{w.text}</p>
           </div>
