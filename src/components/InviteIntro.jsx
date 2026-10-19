@@ -1,0 +1,77 @@
+import Reveal from "./Reveal";
+
+export default function InviteIntro() {
+  return (
+    <div className="flex flex-col gap-6 md:gap-8 pb-6">
+      <Reveal
+        as="h2"
+        className="uppercase font-bold text-[20px] md:text-[32px] text-center font-qellia"
+        style={{ fontWeight: 700, letterSpacing: "0.04em" }}
+      >
+        <span dir="auto">Nikoh to'yi</span>
+      </Reveal>
+
+      <Reveal
+        className="text-center text-[14px] md:text-[18px] flex flex-col gap-2 mx-auto md:max-w-[560px]"
+        style={{ whiteSpace: "pre-line", fontFamily: '"Times New Roman", serif' }}
+      >
+        <span dir="auto">Ikki qalbning muhabbat ila bir taqdirga aylanish onlari</span>
+      </Reveal>
+
+      <Reveal
+        className="font-qellia text-xl relative flex flex-col items-center text-center gap-3 md:gap-4"
+        style={{ fontFamily: '"Fz Qellia", "Cormorant Garamond", "Times New Roman", serif' }}
+      >
+        <span dir="auto">Kuyov &amp; Kelin</span>
+      </Reveal>
+
+      <Reveal
+        className="relative flex flex-col items-center text-center gap-3 md:gap-4"
+        style={{ fontFamily: '"Fz Qellia", "Cormorant Garamond", "Times New Roman", serif' }}
+      >
+        <h3
+          className="w-[80%] min-h-[80px] flex items-center justify-center leading-[55px] md:leading-[80px] whitespace-nowrap"
+          style={{ fontSize: "40px" }}
+        >
+          <span dir="auto">Muhammad</span>
+        </h3>
+        <div className="text-xs uppercase tracking-[0.2em]" style={{ color: "rgb(225, 188, 124)" }}>
+          <span dir="auto">To'y kuni</span>
+        </div>
+        <div className="text-[35px] md:text-[42px]" style={{ color: "rgb(225, 188, 124)" }}>
+          &amp;
+        </div>
+        <h3
+          className="w-[80%] min-h-[80px] flex items-center justify-center leading-[55px] md:leading-[80px] whitespace-nowrap"
+          style={{ fontSize: "40px" }}
+        >
+          <span dir="auto">Xadicha</span>
+        </h3>
+      </Reveal>
+
+      <Reveal
+        className="text-center text-[14px] md:text-[18px] flex flex-col gap-2 mx-auto md:max-w-[560px] px-4 font-normal mt-2 leading-relaxed"
+        style={{ whiteSpace: "pre-line", fontFamily: '"Times New Roman", serif' }}
+      >
+        <span dir="auto">Sizni hayotimizdagi eng baxtli kun — to'yimizga taklif qilamiz</span>
+      </Reveal>
+
+      <Reveal
+        className="relative flex flex-col items-center gap-2 text-center mt-2"
+        style={{ fontFamily: '"Times New Roman", serif', color: "rgb(225, 188, 124)" }}
+      >
+        <span className="text-xs uppercase tracking-[0.2em] opacity-80 mb-1">To'y Sanasi</span>
+        <div className="text-lg md:text-xl font-medium tracking-wider">16-dekabr 2026 18:00</div>
+      </Reveal>
+
+      <Reveal
+        className="flex flex-col items-center px-5 md:px-8 mt-2"
+        style={{ fontFamily: '"Times New Roman", serif', color: "rgb(225, 188, 124)" }}
+      >
+        <span className="text-[16px] text-center uppercase whitespace-pre-line leading-relaxed font-medium">
+          <span dir="auto">Abdurahmonovlar oilasi</span>
+        </span>
+      </Reveal>
+    </div>
+  );
+}
