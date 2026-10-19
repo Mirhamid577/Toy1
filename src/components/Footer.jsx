@@ -42,7 +42,7 @@ export default function Footer() {
         />
       </Reveal>
 
-      <Reveal className="relative z-10 flex w-full flex-col items-center gap-4 px-6 pt-4 pb-6">
+      <Reveal className="relative z-10 flex w-full flex-col items-center gap-4 px-6 pt-4 pb-20">
         <h3
           className="text-sm md:text-base uppercase tracking-[0.15em] font-semibold"
           style={{ color: "rgb(225,188,124)", fontFamily: '"Fz Qellia", "Cormorant Garamond", "Times New Roman", serif' }}
@@ -68,28 +68,6 @@ export default function Footer() {
             </svg>
           </ContactCard>
         </div>
-      </Reveal>
-
-      <Reveal className="relative z-20 flex items-center justify-center pb-10 pt-12">
-        <a
-          href="https://chorlove.uz"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-xs font-medium shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-105"
-          style={{
-            background: "rgba(255,255,255,0.06)",
-            borderColor: "rgba(225,188,124,0.25)",
-            color: "rgb(225,188,124)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
-          }}
-        >
-          <span dir="auto">
-            Muhabbat bilan yaratildi: <span className="inline-block animate-pulse" style={{ color: "#ff4d4f" }}>❤️</span>{" "}
-            <span className="font-semibold">chorlove.uz</span>
-          </span>
-        </a>
       </Reveal>
     </>
   );

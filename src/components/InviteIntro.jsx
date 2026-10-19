@@ -4,25 +4,10 @@ export default function InviteIntro() {
   return (
     <div className="flex flex-col gap-6 md:gap-8 pb-6">
       <Reveal
-        as="h2"
-        className="uppercase font-bold text-[20px] md:text-[32px] text-center font-qellia"
-        style={{ fontWeight: 700, letterSpacing: "0.04em" }}
-      >
-        <span dir="auto">Nikoh to'yi</span>
-      </Reveal>
-
-      <Reveal
         className="text-center text-[14px] md:text-[18px] flex flex-col gap-2 mx-auto md:max-w-[560px]"
         style={{ whiteSpace: "pre-line", fontFamily: '"Times New Roman", serif' }}
       >
         <span dir="auto">Ikki qalbning muhabbat ila bir taqdirga aylanish onlari</span>
-      </Reveal>
-
-      <Reveal
-        className="font-qellia text-xl relative flex flex-col items-center text-center gap-3 md:gap-4"
-        style={{ fontFamily: '"Fz Qellia", "Cormorant Garamond", "Times New Roman", serif' }}
-      >
-        <span dir="auto">Kuyov  &amp; Kelin</span>
       </Reveal>
 
       <Reveal
@@ -35,9 +20,6 @@ export default function InviteIntro() {
         >
           <span dir="auto">Odilxon</span>
         </h3>
-        <div className="text-xs uppercase tracking-[0.2em]" style={{ color: "rgb(225, 188, 124)" }}>
-          <span dir="auto">To'y kuni</span>
-        </div>
         <div className="text-[35px] md:text-[42px]" style={{ color: "rgb(225, 188, 124)" }}>
           &amp;
         </div>
