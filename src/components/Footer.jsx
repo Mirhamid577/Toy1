@@ -1,3 +1,4 @@
+
 import Reveal from "./Reveal";
 
 const cardStyle = {
@@ -47,14 +48,9 @@ export default function Footer() {
           className="text-sm md:text-base uppercase tracking-[0.15em] font-semibold"
           style={{ color: "rgb(225,188,124)", fontFamily: '"Fz Qellia", "Cormorant Garamond", "Times New Roman", serif' }}
         >
-          <span dir="auto">Bog'lanish uchun</span>
+          <span dir="auto">Toy uchun onlayn taklifnomalar yaratamiz</span>
         </h3>
-        <p
-          className="text-xs md:text-sm text-center max-w-[280px]"
-          style={{ color: "rgb(225,188,124)", fontFamily: '"Times New Roman", serif', opacity: 0.85 }}
-        >
-          <span dir="auto">Toy uchun zamonaviy taklifnomalar yaratamiz</span>
-        </p>
+
         <div className="flex w-full max-w-[280px] flex-col gap-2.5">
           <ContactCard href="tel:+998990300505" label="+998 99 030 05 05">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 shrink-0">
