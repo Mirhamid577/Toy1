@@ -49,6 +49,12 @@ export default function Footer() {
         >
           <span dir="auto">Bog'lanish uchun</span>
         </h3>
+        <p
+          className="text-xs md:text-sm text-center max-w-[280px]"
+          style={{ color: "rgb(225,188,124)", fontFamily: '"Times New Roman", serif', opacity: 0.85 }}
+        >
+          <span dir="auto">Toy uchun zamonaviy taklifnomalar yaratamiz</span>
+        </p>
         <div className="flex w-full max-w-[280px] flex-col gap-2.5">
           <ContactCard href="tel:+998990300505" label="+998 99 030 05 05">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 shrink-0">
