@@ -45,10 +45,12 @@ export default function Footer() {
 
       <Reveal className="relative z-10 flex w-full flex-col items-center gap-4 px-6 pt-4 pb-20">
         <h3
-          className="text-sm md:text-base uppercase tracking-[0.15em] font-semibold"
+          className="text-sm md:text-base uppercase tracking-[0.15em] font-semibold text-center px-2 [text-wrap:balance]"
           style={{ color: "rgb(225,188,124)", fontFamily: '"Fz Qellia", "Cormorant Garamond", "Times New Roman", serif' }}
         >
-          <span dir="auto">Toy uchun onlayn taklifnomalar yaratamiz</span>
+          <span dir="auto">
+            Toy uchun onlayn taklifnomalar <span className="block md:inline">yaratamiz</span>
+          </span>
         </h3>
 
         <div className="flex w-full max-w-[280px] flex-col gap-2.5">
