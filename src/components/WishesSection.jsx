@@ -14,12 +14,34 @@ const formatDate = (value) => {
   return Number.isNaN(d.getTime()) ? new Date().toLocaleDateString("en-US") : d.toLocaleDateString("en-US");
 };
 
+const PAGE_SIZE = 10;
+
+const Arrow = ({ direction, disabled, onClick }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    disabled={disabled}
+    aria-label={direction === "left" ? "Oldingi tilaklar" : "Keyingi tilaklar"}
+    className="h-10 w-10 shrink-0 rounded-full text-xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100"
+    style={{
+      background: "rgba(255,255,255,0.06)",
+      border: "1px solid rgba(225,188,124,0.35)",
+      color: "rgb(225, 188, 124)",
+      backdropFilter: "blur(12px)",
+      WebkitBackdropFilter: "blur(12px)",
+    }}
+  >
+    {direction === "left" ? "‹" : "›"}
+  </button>
+);
+
 export default function WishesSection() {
   const [wishes, setWishes] = useState([]);
   const [name, setName] = useState("");
   const [text, setText] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
+  const [page, setPage] = useState(0);
 
   useEffect(() => subscribeWishes(setWishes), []);
 
@@ -35,6 +57,7 @@ export default function WishesSection() {
 
     setSending(true);
     setWishes(next);
+    setPage(0);
     setName("");
     setText("");
     try {
@@ -46,6 +69,9 @@ export default function WishesSection() {
   };
 
   const all = wishes;
+  const totalPages = Math.max(1, Math.ceil(all.length / PAGE_SIZE));
+  const current = Math.min(page, totalPages - 1);
+  const visible = all.slice(current * PAGE_SIZE, current * PAGE_SIZE + PAGE_SIZE);
 
   return (
     <section className="relative z-10 px-6 md:px-10 pt-10 md:pt-12 pb-8 md:pb-10" style={{ backgroundColor: "transparent", color: "rgb(225, 188, 124)" }}>
@@ -94,21 +120,32 @@ export default function WishesSection() {
           </p>
         )}
       </form>
-      <Reveal className="mt-8 mx-auto max-h-[500px] w-full max-w-full space-y-3 overflow-y-auto pr-2 md:max-w-lg">
-        {all.map((w, i) => (
-          <div
-            key={w.created_at ?? `${w.name}-${i}`}
-            className="rounded-xl border p-4 shadow-xl backdrop-blur-xl transition-all hover:scale-[1.01]"
-            style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(225,188,124,0.25)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
-          >
-            <div className="flex items-start justify-between">
-              <span className="text-base font-semibold" style={{ color: "rgb(225,188,124)" }}>{w.name}</span>
-              <span className="text-xs" style={{ color: "rgba(225,188,124,0.65)" }}>{formatDate(w.created_at || w.date)}</span>
+      <Reveal className="wishes-scroll mt-8 mx-auto max-h-[500px] w-full max-w-full space-y-3 overflow-y-auto pr-2 md:max-w-lg">
+        <div key={current} className="gate-fade space-y-3">
+          {visible.map((w, i) => (
+            <div
+              key={w.id ?? w.created_at ?? `${w.name}-${i}`}
+              className="rounded-xl border p-4 shadow-xl backdrop-blur-xl transition-all hover:scale-[1.01]"
+              style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(225,188,124,0.25)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
+            >
+              <div className="flex items-start justify-between">
+                <span className="text-base font-semibold" style={{ color: "rgb(225, 188, 124)" }}>{w.name}</span>
+                <span className="text-xs" style={{ color: "rgba(225,188,124,0.65)" }}>{formatDate(w.created_at || w.date)}</span>
+              </div>
+              <p className="mt-2 text-sm leading-relaxed" style={{ color: "rgb(225, 188, 124)" }}>{w.text}</p>
             </div>
-            <p className="mt-2 text-sm leading-relaxed" style={{ color: "rgb(225,188,124)" }}>{w.text}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </Reveal>
+      {totalPages > 1 && (
+        <div className="mt-4 flex items-center justify-center gap-4">
+          <Arrow direction="left" disabled={current === 0} onClick={() => setPage(Math.max(0, current - 1))} />
+          <span className="text-xs tracking-widest" style={{ color: "rgba(225,188,124,0.75)" }}>
+            {current + 1} / {totalPages}
+          </span>
+          <Arrow direction="right" disabled={current >= totalPages - 1} onClick={() => setPage(Math.min(totalPages - 1, current + 1))} />
+        </div>
+      )}
     </section>
   );
 }

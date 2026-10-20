@@ -193,10 +193,10 @@ export default function Envelope({ onOpen, onExited, opening }) {
                     animationDelay: "0.3s",
                     textShadow: "0 0 24px rgba(225, 188, 124, 0.35)",
                   }}
-                  className="gate-fade mb-2 flex gap-2 flex-row justify-center items-center leading-tight font-nautigal text-3xl sm:text-4xl"
+                  className="gate-fade mb-2 flex gap-2 flex-row justify-center items-center leading-tight font-nautigal text-5xl sm:text-6xl md:text-7xl"
                 >
                   <span className="block text-center">Odilxon</span>
-                  <span className="block text-center text-lg leading-none sm:text-xl">&amp;</span>
+                  <span className="block text-center text-2xl leading-none sm:text-3xl">&amp;</span>
                   <span className="block text-center">Odinaxon</span>
                 </h1>
 
@@ -222,7 +222,7 @@ export default function Envelope({ onOpen, onExited, opening }) {
                   }}
                   className="gate-fade text-[18px] mb-5 flex flex-col items-center"
                 >
-                  <span dir="auto">5-No'yabr 2026</span>
+                  <span dir="auto">5-Noyabr 2026</span>
                 </div>
 
                 <div className="gate-fade flex justify-center" style={{ animationDelay: "0.6s" }}>

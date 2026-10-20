@@ -216,6 +216,29 @@ body {
   display: none;
 }
 
+/* ---------- Gold scrollbar (wishes list) ---------- */
+.wishes-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(225, 188, 124, 0.75) rgba(225, 188, 124, 0.12);
+}
+.wishes-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.wishes-scroll::-webkit-scrollbar-track {
+  background: rgba(225, 188, 124, 0.12);
+  border-radius: 999px;
+}
+.wishes-scroll::-webkit-scrollbar-thumb {
+  background: rgba(225, 188, 124, 0.75);
+  border-radius: 999px;
+}
+.wishes-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgb(225, 188, 124);
+}
+.wishes-scroll::-webkit-scrollbar-button {
+  display: none;
+}
+
 /* ---------- Opening screen (envelope gate) ---------- */
 @keyframes gate-rise {
   0% {

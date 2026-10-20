@@ -20,7 +20,8 @@ function Lightbox({ index, setIndex, onClose }) {
     <div className="fixed inset-0 z-[200] bg-black/85 flex flex-col items-center justify-center">
       <button
         onClick={onClose}
-        className="absolute right-2 sm:right-4 top-2 sm:top-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl sm:text-2xl flex items-center justify-center"
+        className="absolute right-2 sm:right-4 top-2 sm:top-4 z-10 w-10 h-10 rounded-full text-xl sm:text-2xl flex items-center justify-center transition-transform hover:scale-110"
+        style={{ background: "rgba(225,188,124,0.18)", border: "1px solid rgba(225,188,124,0.55)", color: "#E1BC7C" }}
         aria-label="Close lightbox"
       >
         ✕

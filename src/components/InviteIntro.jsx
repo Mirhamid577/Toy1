@@ -42,7 +42,7 @@ export default function InviteIntro() {
         className="relative flex flex-col items-center gap-2 text-center mt-2"
         style={{ fontFamily: '"Times New Roman", serif', color: "rgb(225, 188, 124)" }}
       ><span className="text-xs uppercase tracking-[0.2em] opacity-80 mb-1">To'y Sanasi</span>
-        <div className="text-lg md:text-xl font-medium tracking-wider">5-No'yabr 2026 17:00</div>
+        <div className="text-lg md:text-xl font-medium tracking-wider">5-Noyabr 2026 17:00</div>
       </Reveal>
 
       <Reveal
